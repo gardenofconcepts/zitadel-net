@@ -13,7 +13,7 @@ jobs:
       fail-fast: true
       matrix:
         version:
-          - 8.x
+          - 9.x
     steps:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-setup-action@v1
