@@ -11,8 +11,8 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackageProjectUrl>https://github.com/smartive/zitadel-net</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/smartive/zitadel-net.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/gardenofconcepts/zitadel-net</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/gardenofconcepts/zitadel-net.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicense>Apache-2.0</PackageLicense>
         <PackageIcon>icon.png</PackageIcon>

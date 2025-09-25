@@ -66,7 +66,7 @@ public static class Clients
     /// Create a service client for the project service.
     /// </summary>
     /// <param name="options">Options for the client like authorization method.</param>
-    /// <returns>The <see cref="Zitadel.Project.V2beta.Project.V2beta.ProjectService.ProjectServiceClient"/>.</returns>
+    /// <returns>The <see cref="Project.V2beta.ProjectService.ProjectServiceClient"/>.</returns>
     public static ProjectService.ProjectServiceClient ProjectService(Options options) =>
         GetClient<ProjectService.ProjectServiceClient>(options);
 

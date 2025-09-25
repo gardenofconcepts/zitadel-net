@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/semantic-release.json",
   "branches": [
-    "main",
+    "goc-main",
     {
       "name": "next",
       "prerelease": "prerelease"
@@ -10,7 +10,17 @@
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    "semantic-release-net",
+    [
+      "semantic-release-net",
+      {
+        "sources": [
+          {
+            "url": "https://nuget.pkg.github.com/gardenofconcepts/index.json",
+            "apiKeyEnvVar": "GH_NUGET_TOKEN"
+          }
+        ]
+      }
+    ],
     [
       "@semantic-release/github",
       {

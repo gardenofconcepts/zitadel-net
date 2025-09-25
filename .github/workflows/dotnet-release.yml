@@ -4,21 +4,22 @@ on:
   push:
     branches:
       - main
+      - goc-main
       - next
 
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: bufbuild/buf-setup-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: extractions/setup-just@v1
+      - uses: extractions/setup-just@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 9.x
       - name: Setup dotnet tools
@@ -26,11 +27,11 @@ jobs:
       - name: Generate gRPC code
         run: just generate-grpc
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v5
         with:
           semantic_version: 19
           extra_plugins: |
             semantic-release-net
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUGET_TOKEN: ${{ secrets.NUGET_API_KEY }}
+          GH_NUGET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
