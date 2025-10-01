@@ -34,5 +34,5 @@ public interface ITokenProvider
             options);
     }
 
-    internal DelegatingHandler CreateHandler();
+    public DelegatingHandler CreateHandler();
 }
