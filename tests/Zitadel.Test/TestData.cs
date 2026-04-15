@@ -39,7 +39,8 @@ public static class TestData
                                                         }
                                                     """;
 
-    public static Application Application => Application.LoadFromJsonString(ApplicationJson);
+    public static Zitadel.Credentials.Application Application =>
+        Zitadel.Credentials.Application.LoadFromJsonString(ApplicationJson);
 
     public static ServiceAccount ServiceAccount => ServiceAccount.LoadFromJsonString(ServiceAccountJson);
 }

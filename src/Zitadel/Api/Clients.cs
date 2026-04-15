@@ -3,24 +3,34 @@ using Grpc.Net.Client;
 
 using Zitadel.Action.V2;
 using Zitadel.Admin.V1;
+using Zitadel.Analytics.V2beta;
 using Zitadel.App.V2beta;
+using Zitadel.Application.V2;
 using Zitadel.Auth.V1;
 using Zitadel.Authentication;
-using Zitadel.Authorization.V2beta;
+using Zitadel.Authorization.V2;
 using Zitadel.Feature.V2;
 using Zitadel.Idp.V2;
-using Zitadel.Instance.V2beta;
-using Zitadel.InternalPermission.V2beta;
+using Zitadel.Instance.V2;
+using Zitadel.InternalPermission.V2;
 using Zitadel.Management.V1;
 using Zitadel.Oidc.V2;
 using Zitadel.Org.V2;
-using Zitadel.Project.V2beta;
+using Zitadel.Project.V2;
 using Zitadel.Saml.V2;
 using Zitadel.Session.V2;
 using Zitadel.Settings.V2;
 using Zitadel.System.V1;
 using Zitadel.User.V2;
 using Zitadel.Webkey.V2;
+
+using AuthorizationServiceV2Beta = Zitadel.Authorization.V2beta.AuthorizationService;
+using DebugEventsServiceV3Alpha = Zitadel.Resources.DebugEvents.V3alpha.ZITADELDebugEvents;
+using InstanceServiceV2Beta = Zitadel.Instance.V2beta.InstanceService;
+using InternalPermissionServiceV2Beta = Zitadel.InternalPermission.V2beta.InternalPermissionService;
+using ProjectServiceV2Beta = Zitadel.Project.V2beta.ProjectService;
+using UserSchemaServiceV3Alpha = Zitadel.Resources.Userschema.V3alpha.ZITADELUserSchemas;
+using UserServiceV3Alpha = Zitadel.Resources.User.V3alpha.ZITADELUsers;
 
 namespace Zitadel.Api;
 
@@ -63,11 +73,27 @@ public static class Clients
         GetClient<AppService.AppServiceClient>(options);
 
     /// <summary>
+    /// Create a service client for the application service.
+    /// </summary>
+    /// <param name="options">Options for the client, including endpoint and authorization method.</param>
+    /// <returns>The <see cref="Application.V2.ApplicationService.ApplicationServiceClient"/>.</returns>
+    public static ApplicationService.ApplicationServiceClient ApplicationService(Options options) =>
+        GetClient<ApplicationService.ApplicationServiceClient>(options);
+
+    /// <summary>
     /// Create a service client for the project service.
     /// </summary>
     /// <param name="options">Options for the client like authorization method.</param>
     /// <returns>The <see cref="Project.V2beta.ProjectService.ProjectServiceClient"/>.</returns>
-    public static ProjectService.ProjectServiceClient ProjectService(Options options) =>
+    public static ProjectServiceV2Beta.ProjectServiceClient ProjectService(Options options) =>
+        GetClient<ProjectServiceV2Beta.ProjectServiceClient>(options);
+
+    /// <summary>
+    /// Create a service client for the project service (v2).
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="Zitadel.Project.V2.ProjectService.ProjectServiceClient"/>.</returns>
+    public static ProjectService.ProjectServiceClient ProjectServiceV2(Options options) =>
         GetClient<ProjectService.ProjectServiceClient>(options);
 
     /// <summary>
@@ -83,7 +109,15 @@ public static class Clients
     /// </summary>
     /// <param name="options">Options for the client like authorization method.</param>
     /// <returns>The <see cref="Authorization.V2beta.AuthorizationService.AuthorizationServiceClient"/>.</returns>
-    public static AuthorizationService.AuthorizationServiceClient AuthorizationService(Options options) =>
+    public static AuthorizationServiceV2Beta.AuthorizationServiceClient AuthorizationService(Options options) =>
+        GetClient<AuthorizationServiceV2Beta.AuthorizationServiceClient>(options);
+
+    /// <summary>
+    /// Create a service client for the authorization service (v2).
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="Zitadel.Authorization.V2.AuthorizationService.AuthorizationServiceClient"/>.</returns>
+    public static AuthorizationService.AuthorizationServiceClient AuthorizationServiceV2(Options options) =>
         GetClient<AuthorizationService.AuthorizationServiceClient>(options);
 
     /// <summary>
@@ -93,6 +127,14 @@ public static class Clients
     /// <returns>The <see cref="Feature.V2.FeatureService.FeatureServiceClient"/>.</returns>
     public static FeatureService.FeatureServiceClient FeatureService(Options options) =>
         GetClient<FeatureService.FeatureServiceClient>(options);
+
+    /// <summary>
+    /// Create a service client for the telemetry service.
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="TelemetryService.TelemetryServiceClient"/>.</returns>
+    public static TelemetryService.TelemetryServiceClient TelemetryService(Options options) =>
+        GetClient<TelemetryService.TelemetryServiceClient>(options);
 
     /// <summary>
     /// Create a service client for the SAML service.
@@ -159,6 +201,30 @@ public static class Clients
         GetClient<UserService.UserServiceClient>(options);
 
     /// <summary>
+    /// Create a service client for the user service (v3alpha resources API).
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="Zitadel.Resources.User.V3alpha.ZITADELUsers.ZITADELUsersClient"/>.</returns>
+    public static UserServiceV3Alpha.ZITADELUsersClient UserServiceV3Alpha(Options options) =>
+        GetClient<UserServiceV3Alpha.ZITADELUsersClient>(options);
+
+    /// <summary>
+    /// Create a service client for the user schema service (v3alpha resources API).
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="Zitadel.Resources.Userschema.V3alpha.ZITADELUserSchemas.ZITADELUserSchemasClient"/>.</returns>
+    public static UserSchemaServiceV3Alpha.ZITADELUserSchemasClient UserSchemaService(Options options) =>
+        GetClient<UserSchemaServiceV3Alpha.ZITADELUserSchemasClient>(options);
+
+    /// <summary>
+    /// Create a service client for the debug events service (v3alpha resources API).
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="Zitadel.Resources.DebugEvents.V3alpha.ZITADELDebugEvents.ZITADELDebugEventsClient"/>.</returns>
+    public static DebugEventsServiceV3Alpha.ZITADELDebugEventsClient DebugEventsService(Options options) =>
+        GetClient<DebugEventsServiceV3Alpha.ZITADELDebugEventsClient>(options);
+
+    /// <summary>
     /// Create a service client for the identity provider service.
     /// </summary>
     /// <param name="options">Options for the client like authorization method.</param>
@@ -171,7 +237,15 @@ public static class Clients
     /// </summary>
     /// <param name="options">Options for the client like authorization method.</param>
     /// <returns>The <see cref="InstanceService.InstanceServiceClient"/>.</returns>
-    public static InstanceService.InstanceServiceClient InstanceService(Options options) =>
+    public static InstanceServiceV2Beta.InstanceServiceClient InstanceService(Options options) =>
+        GetClient<InstanceServiceV2Beta.InstanceServiceClient>(options);
+
+    /// <summary>
+    /// Create a service client for the instance service (v2).
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="Zitadel.Instance.V2.InstanceService.InstanceServiceClient"/>.</returns>
+    public static InstanceService.InstanceServiceClient InstanceServiceV2(Options options) =>
         GetClient<InstanceService.InstanceServiceClient>(options);
 
     /// <summary>
@@ -179,8 +253,17 @@ public static class Clients
     /// </summary>
     /// <param name="options">Options for the client like authorization method.</param>
     /// <returns>The <see cref="InternalPermissionService.InternalPermissionServiceClient"/>.</returns>
-    public static InternalPermissionService.InternalPermissionServiceClient
+    public static InternalPermissionServiceV2Beta.InternalPermissionServiceClient
         InternalPermissionService(Options options) =>
+        GetClient<InternalPermissionServiceV2Beta.InternalPermissionServiceClient>(options);
+
+    /// <summary>
+    /// Create a service client for the internal permission service (v2).
+    /// </summary>
+    /// <param name="options">Options for the client like authorization method.</param>
+    /// <returns>The <see cref="Zitadel.InternalPermission.V2.InternalPermissionService.InternalPermissionServiceClient"/>.</returns>
+    public static InternalPermissionService.InternalPermissionServiceClient
+        InternalPermissionServiceV2(Options options) =>
         GetClient<InternalPermissionService.InternalPermissionServiceClient>(options);
 
     private static TClient GetClient<TClient>(Options options)

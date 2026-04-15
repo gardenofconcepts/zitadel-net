@@ -48,6 +48,13 @@ This package also provides the compiled proto files.
 The ZITADEL library provides helper functions to create the various clients
 to manage resources.
 
+### Supported gRPC API tag
+
+The generated gRPC clients in this package are currently based on upstream
+ZITADEL tag `v4.13.1`.
+
+This value is also available in code via `Zitadel.Api.ZitadelGrpcVersion.SupportedTag`.
+
 The [ZITADEL API Reference](https://zitadel.com/docs/apis/introduction) describes
 the gRPC clients, calls, and how to use them.
 

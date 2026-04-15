@@ -36,6 +36,12 @@ Follow these steps to build the project:
    ```bash
    just generate-grpc
    ```
+   By default this uses upstream ZITADEL tag `v4.13.1`. To generate from a different
+   version, override the just variable:
+   ```bash
+   just --set zitadel_tag v4.12.0 generate-grpc
+   ```
+   The supported API tag is also exposed in code as `Zitadel.Api.ZitadelGrpcVersion.SupportedTag`.
 
 2. **Build the project:**
    ```bash
