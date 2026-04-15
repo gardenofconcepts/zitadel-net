@@ -26,28 +26,23 @@ To set up the dev environment, you need to install:
 
 1. [.NET SDK](https://dotnet.microsoft.com/download) (8.x or later)
 2. [Buf CLI](https://buf.build/docs/installation) - for protobuf code generation
-3. [Just](https://github.com/casey/just) - task runner (installed via dotnet tools)
+3. [Just](https://github.com/casey/just) - task runner
 
 #### Building the Project
 
 Follow these steps to build the project:
 
-1. **Install .NET tools (including Just):**
-   ```bash
-   dotnet tool restore
-   ```
-
-2. **Generate gRPC code (required before first build):**
+1. **Generate gRPC code (required before first build):**
    ```bash
    just generate-grpc
    ```
 
-3. **Build the project:**
+2. **Build the project:**
    ```bash
    dotnet build
    ```
 
-4. **Run tests:**
+3. **Run tests:**
    ```bash
    dotnet test --configuration Release
    ```

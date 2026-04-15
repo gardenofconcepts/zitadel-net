@@ -22,8 +22,6 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.x
-      - name: Setup dotnet tools
-        run: dotnet tool restore
       - name: Generate gRPC code
         run: just generate-grpc
       - name: Semantic Release

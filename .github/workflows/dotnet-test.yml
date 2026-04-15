@@ -26,8 +26,6 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ matrix.version }}
-      - name: Setup dotnet tools
-        run: dotnet tool restore
       - name: Generate gRPC code
         run: just generate-grpc
       - name: Test
