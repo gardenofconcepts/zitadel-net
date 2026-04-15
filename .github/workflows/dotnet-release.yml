@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 10.x
+          global-json-file: global.json
       - name: Generate gRPC code
         run: just generate-grpc
       - name: Semantic Release
